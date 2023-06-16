@@ -1,0 +1,31 @@
+<body>
+    <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>LOGIN</mat-card-title><br>
+            <mat-card-subtitle><br>Credentials Please!</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <br><mat-card-content>
+            <div class="example-container">
+                <mat-form-field appearance="outline" style="width:245px;height: 60px;padding-top:10px">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" [(ngModel)]="mail" [formControl]="email" required >
+                  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding-top:20px;">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass" [formControl]="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-icon>
+                  <mat-error *ngIf="password.invalid">{{getErrorMessageForPass()}}</mat-error>
+                  </mat-form-field>
+              </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="button" mat-raised-button [disabled]="((email.valid==true) && (password.valid==true))? false:true" style="margin-left:auto; margin-right:auto; background-color:cadetblue; width:90px; height:30px" (click)="onButtonClick()" >Login</button>
+        </mat-card-actions>
+        <h4 style="margin-left:30%">New user? <a href="/signup" style="text-decoration:none">Sign Up</a></h4>
+      </mat-card>
+    </body>

@@ -1,0 +1,22 @@
+<body>
+    <mat-card class="card">
+        <h3 style="text-align:center">Welcome!</h3>
+        <h4 style="text-align: center;">Please select only Excel files</h4>
+        <input type="file" class="file upload" (change)="fileSelect($event)" accept=".csv" style="width:80%;margin-left:30%;" required>
+         <mat-form-field appearance="outline"  style="margin-top:5%;width:80%;margin-left:10%">
+            <mat-label>Periodicity</mat-label>
+            <mat-select [(ngModel)]="period" [formControl]="p" required>
+              <mat-option value="Year">Year</mat-option>
+              <mat-option value="Month">Month</mat-option>
+            </mat-select>
+            <mat-error *ngIf="p.invalid">{{error()}}</mat-error>
+          </mat-form-field>
+        <mat-form-field appearance="outline"  style="width:80%;margin-left:10%">
+            <mat-label>Duration</mat-label>
+            <input matInput type="number" [(ngModel)]="duration" [formControl]="d" required>
+            <mat-error *ngIf="d.invalid">{{error()}}</mat-error>
+        </mat-form-field> 
+        <button class="button" mat-raised-button [disabled]="((p.valid==true) && (d.valid==true))? false:true" (click)="upload()" style="margin-left:35%;height:10%;width:25%;">Upload</button>
+    </mat-card>
+  </body>
+
